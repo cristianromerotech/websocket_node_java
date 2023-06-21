@@ -1,9 +1,10 @@
 import WebSocket, {WebSocketServer} from 'ws';
 
 const wss = new WebSocketServer({ port: 4000});
-//var notificacion = '¡Iniciando servidor!';
+
 wss.on('connection', (ws) => {
   // Maneja la conexión del cliente WebSocket
+  //Handle the conection of the WebSocket client
 
   ws.on('message', (message) => {
     // Maneja el mensaje recibido del cliente
@@ -12,17 +13,19 @@ wss.on('connection', (ws) => {
   });
 
   // Enviar una notificación push a los clientes
+  // Send a push notification to the clients
 
   const enviarNotificacion = () => {
     
-    let notificacion = "Respondiendo desde el servidor";
+    let notificacion = "Response from the server";
  
-      console.log('Enviando notificación: ' + notificacion);
+      console.log('Sending notification: ' + notificacion);
       ws.send(notificacion);
  
   };
   
 
   // Ejemplo: Enviar una notificación cada 5 segundos
+  // Example: Send a notification every 5 seconds
   setInterval(enviarNotificacion, 5000);
 });
